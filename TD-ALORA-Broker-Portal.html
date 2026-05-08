@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T&D ALORA AVM Broker Portalı</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              purple: '#6B21A8',
+              cyan: '#06B6D4',
+              emerald: '#10B981',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FFFFFF;
+      color: #111827;
+      overflow-x: hidden;
+    }
+    .glass {
+      background-color: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+    }
+    .text-gradient {
+      background-image: linear-gradient(135deg, #6B21A8 0%, #06B6D4 50%, #10B981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    .glass-dark {
+      background-color: rgba(0, 0, 0, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .mesh-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-color: #ffffff;
+      background-image: 
+        radial-gradient(circle at 0% 0%, #ffffff 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, #f3e8ff 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, #dcfce7 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, #cffafe 0%, transparent 50%);
+      filter: blur(40px);
+      animation: mesh-move 20s ease-in-out infinite alternate;
+    }
+    @keyframes mesh-move {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+    
+    /* Scroll animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+    .delay-500 { transition-delay: 500ms; }
+  </style>
+</head>
+<body>
+  <div class="mesh-bg"></div>
+  <main class="relative z-10">
+    <!-- Hero -->
+    <section class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 pt-20">
+       <div class="max-w-4xl mx-auto fade-up">
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-4 leading-[0.9]">
+          <span class="text-gradient">Anlaşmayı Kapat.</span><br />
+          <span>Ödülü Al.</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+          <strong class="text-gray-900 font-medium">T&D ALORA AVM</strong> — Ankara'da <strong class="text-gray-900 font-medium">25.000 m²</strong> birinci sınıf ticari alan. 
+          Pazarlama ücreti yok, avans yok. Sadece seçkin brokerlar için tamamen başarı odaklı komisyon.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="document.getElementById('commission').scrollIntoView({ behavior: 'smooth' })" class="px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 w-full sm:w-auto cursor-pointer">
+            Komisyon Tablosunu İncele
+          </button>
+          <button onclick="document.getElementById('apply').scrollIntoView({ behavior: 'smooth' })" class="px-8 py-4 rounded-full glass font-medium text-lg hover:bg-white/60 transition-all duration-300 w-full sm:w-auto text-gray-900 cursor-pointer">
+            Broker Olarak Başvur
+          </button>
+        </div>
+       </div>
+    </section>
+
+    <!-- Commission -->
+    <section id="commission" class="py-24 px-4 max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-up">
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Ödül Tablosu</h2>
+        <p class="text-xl text-gray-500 max-w-2xl mx-auto">Net, şeffaf ve anında ödeme. Pazarlık yok, kesinti yok.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="md:col-span-2">
+          <div class="glass rounded-[32px] p-8 md:p-10 border-2 border-emerald-500/20 shadow-[0_0_40px_rgba(16,185,129,0.1)] relative overflow-hidden ring-1 ring-emerald-500/10 fade-up">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/20 blur-3xl rounded-full"></div>
+            <div class="relative z-10">
+              <h3 class="text-2xl md:text-3xl font-semibold mb-2 text-gray-900">Büyük Ödül</h3>
+              <p class="text-gray-500 mb-8 border-b border-gray-200/50 pb-8">Tüm Kompleksi Kirala (10 Yıllık Sözleşme) @ 10.000.000 TL/ay</p>
+              <div class="space-y-2">
+                <p class="text-sm font-medium tracking-widest text-emerald-600 uppercase">Nakit Komisyon</p>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-5xl md:text-7xl font-bold tracking-tighter text-gradient count-up" data-target="500000">0</span>
+                  <span class="text-2xl font-medium text-gray-400">TL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Alternatif -->
+        <div class="glass rounded-[32px] p-8 md:p-10 fade-up delay-100">
+            <div class="relative z-10">
+              <h3 class="text-2xl md:text-3xl font-semibold mb-2 text-gray-800">Alternatif Kiralama</h3>
+              <p class="text-gray-500 mb-8 border-b border-gray-200/50 pb-8">8.000.000 TL/ay ile Kirala</p>
+              <div class="space-y-2">
+                <p class="text-sm font-medium tracking-widest text-emerald-600 uppercase">Nakit Komisyon</p>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-5xl md:text-7xl font-bold tracking-tighter text-gray-900 count-up" data-target="400000">0</span>
+                  <span class="text-2xl font-medium text-gray-400">TL</span>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- Kat Bazlı -->
+        <div class="glass rounded-[32px] p-8 md:p-10 fade-up delay-200">
+            <div class="relative z-10">
+              <h3 class="text-2xl md:text-3xl font-semibold mb-2 text-gray-800">Kat Bazlı Kiralama</h3>
+              <p class="text-gray-500 mb-8 border-b border-gray-200/50 pb-8">6 Müsait Kat. Tek bir katı kirala @ 1.500.000 TL/ay</p>
+              <div class="space-y-2">
+                <p class="text-sm font-medium tracking-widest text-emerald-600 uppercase">Nakit Komisyon</p>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-5xl md:text-7xl font-bold tracking-tighter text-gray-900 count-up" data-target="75000">0</span>
+                  <span class="text-2xl font-medium text-gray-400">TL</span>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <p class="text-center text-sm text-gray-400 max-w-3xl mx-auto mt-12 bg-white/50 p-6 rounded-2xl glass-dark fade-up delay-300">
+        Komisyonlar, resmi sözleşme imzalanıp ilk kira tahsil edildiğinde anında nakit ödenir. Rakamlar temel örneklerdir ve nihai sözleşme ile orantılı olarak ölçeklenir.
+      </p>
+    </section>
+
+    <!-- Specs -->
+    <section class="py-24 px-4 bg-gray-50/50">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+          <h2 class="text-4xl font-bold tracking-tight mb-6">T&D ALORA Özelikleri</h2>
+          <p class="text-xl text-gray-500">Birinci sınıf kurumsal kiracılar için tasarlandı.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div class="glass p-8 rounded-[24px] fade-up">
+            <i data-lucide="map-pin" class="w-8 h-8 text-cyan-500 mb-6"></i>
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Konum</h4>
+            <p class="text-gray-500 leading-relaxed">Altındağ, Ankara (Yüksek trafik bölgesi)</p>
+          </div>
+          <div class="glass p-8 rounded-[24px] fade-up delay-100">
+            <i data-lucide="maximize-2" class="w-8 h-8 text-cyan-500 mb-6"></i>
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Büyüklük</h4>
+            <p class="text-gray-500 leading-relaxed">25.000 m², 7 Kat (3 Bodrum, Zemin, 3 Kat)</p>
+          </div>
+          <div class="glass p-8 rounded-[24px] fade-up delay-200">
+            <i data-lucide="check-circle-2" class="w-8 h-8 text-cyan-500 mb-6"></i>
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Durum</h4>
+            <p class="text-gray-500 leading-relaxed">Sıfır kilometre, tamamlanmış ve kullanıma hazır</p>
+          </div>
+          <div class="glass p-8 rounded-[24px] fade-up delay-300">
+            <i data-lucide="zap" class="w-8 h-8 text-cyan-500 mb-6"></i>
+            <h4 class="text-lg font-semibold text-gray-900 mb-2">Özellikler</h4>
+            <p class="text-gray-500 leading-relaxed">Yüksek tavanlar, verimli MEP, elektrikli araç istasyonları, kapalı otopark</p>
+          </div>
+        </div>
+        
+        <div class="text-center fade-up delay-400">
+          <h4 class="text-sm font-semibold tracking-widest text-gray-400 uppercase mb-8">Hedef Kitleler</h4>
+          <div class="flex flex-wrap justify-center gap-3">
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Özel Hastaneler & Medikal Plazalar</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Vakıf Üniversiteleri & Özel Okul Kampüsleri</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Bakanlıklar, Kamu Hizm. & Sav. Sanayi</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Çağrı Merkezleri (Call Centers)</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Mobilya, Yapı Market & Ev Dekorasyon</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">2. El Otomotiv & Galeri Kompleksleri</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Paylaşımlı Ofisler (Coworking Spaces)</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Kapalı Tema Parkları & Eğlence</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Lojistik, Dark Store & Veri Merkezleri</span>
+            <span class="px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-purple-500/30 hover:shadow-md transition-all cursor-default text-sm">Büyük Marketler (Gross Marketler)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advantages -->
+    <section class="py-24 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+          <h2 class="text-4xl font-bold tracking-tight mb-6">Stratejik Avantaj</h2>
+          <p class="text-xl text-gray-500">Müşterilerinize sunabileceğiniz eşsiz fırsatlar.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="glass p-8 rounded-[24px] border border-gray-100/50 shadow-sm hover:shadow-xl hover:border-purple-500/20 transition-all duration-300 fade-up">
+            <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-6">
+              <i data-lucide="target" class="w-7 h-7 text-purple-600"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-900">Ankara'nın Merkezi Hub'ı</h3>
+            <p class="text-gray-500 leading-relaxed text-lg">Altındağ, Güneşevler'de yer almaktadır. Yüksek satın alma gücüne sahip konut ve ticari alanlarla çevrilidir.</p>
+          </div>
+          <div class="glass p-8 rounded-[24px] border border-gray-100/50 shadow-sm hover:shadow-xl hover:border-purple-500/20 transition-all duration-300 fade-up delay-100">
+            <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-6">
+              <i data-lucide="lightbulb" class="w-7 h-7 text-purple-600"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-900">Sıfır Kilometre Mülk</h3>
+            <p class="text-gray-500 leading-relaxed text-lg">Yepyeni inşaat, iskanı tam olarak alınmış, anında özel dekorasyona ve taşınmaya hazır.</p>
+          </div>
+          <div class="glass p-8 rounded-[24px] border border-gray-100/50 shadow-sm hover:shadow-xl hover:border-purple-500/20 transition-all duration-300 fade-up delay-200">
+            <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-6">
+              <i data-lucide="layers" class="w-7 h-7 text-purple-600"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-900">Esnek Kiralama Opsiyonları</h3>
+            <p class="text-gray-500 leading-relaxed text-lg">Sadece komple bina değil, kat bazlı ve esnek kiralama modellerimizle farklı ölçeklerdeki kurumsal yatırımcılara tam uyum sağlayabilirsiniz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rules -->
+    <section class="py-32 px-4 bg-black text-white rounded-[3rem] mx-4 md:mx-8 my-12 fade-up">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-20 fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Oyunun Kuralları</h2>
+          <p class="text-xl text-gray-400">Kesin, net ve profesyonel.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+          <div class="relative fade-up delay-100">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto md:mx-0 relative z-10 bg-white/10">
+              <i data-lucide="trophy" class="w-8 h-8 text-white"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4">Sınırsız Kazanç Potansiyeli</h3>
+            <p class="text-gray-400 leading-relaxed text-lg">Kazancınızda üst limit yok. Getirdiğiniz kurumsal kiracının hacmi ve sözleşme büyüklüğü ne kadar yüksekse, alacağınız ödül de o kadar artar.</p>
+          </div>
+          <div class="relative fade-up delay-200">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto md:mx-0 relative z-10 bg-white/10">
+              <i data-lucide="target" class="w-8 h-8 text-white"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4">Açık ve Eşit Fırsat</h3>
+            <p class="text-gray-400 leading-relaxed text-lg">Tek yetki sınırlamaları veya yavaş bürokratik süreçler yok. Doğru müşteriyi eşleştirip imzayı getiren broker, komisyonu anında hak eder.</p>
+          </div>
+          <div class="relative fade-up delay-300">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto md:mx-0 relative z-10 bg-emerald-500/20">
+              <div class="absolute inset-0 bg-emerald-500 blur-2xl opacity-20 rounded-full"></div>
+              <i data-lucide="check-circle-2" class="w-8 h-8 text-emerald-400"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4">İmza Anında Ödeme</h3>
+            <p class="text-gray-400 leading-relaxed text-lg">Kurumsal kira sözleşmesi imzalandığı gün komisyonunuz hesabınıza yatırılır. Gecikme yok, taksit yok.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="apply" class="py-32 px-4 flex justify-center items-center fade-up">
+      <div class="max-w-4xl w-full text-center">
+        <h2 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8 leading-[1.1]">
+          Komisyonunuzu Almaya <br/><span class="text-gradient">Hazır Mısınız?</span>
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Bürokrasiyi atlayın. Doğru kurumsal yatırımcıya sahipseniz, güvenli broker yeterlilik formumuzu doldurun ve anlaşmayı kapatalım.
+        </p>
+        <a href="https://forms.cloud.microsoft/r/yVCYbHuXPE" target="_blank" rel="noreferrer" class="relative inline-block group">
+          <div class="absolute inset-0 bg-gradient-to-r from-purple-600 via-cyan-500 to-emerald-500 rounded-full blur-xl opacity-40 group-hover:opacity-75 transition-opacity duration-500"></div>
+          <div class="relative px-10 py-6 bg-black text-white rounded-full font-semibold text-xl tracking-wide hover:scale-105 transition-transform duration-300">
+            Kayıt Formunu Doldur
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-200 mt-20 pt-16 pb-8 px-4 relative z-10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start lg:items-center gap-8">
+      <div>
+        <h3 class="text-xl font-bold tracking-tight text-gray-900 mb-2">T&D ALORA AVM</h3>
+        <p class="text-sm text-gray-500 uppercase tracking-widest font-medium">Ticari Kiralama Yönetimi</p>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-6 text-gray-600">
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center bg-gray-50">
+               <i data-lucide="phone" class="w-4 h-4 text-gray-900"></i>
+            </span>
+            <span class="font-medium text-gray-900">Melik Bey</span>
+            <a href="tel:+905307997738" class="hover:text-purple-600 transition-colors">+90 530 799 77 38</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center bg-gray-50">
+               <i data-lucide="mail" class="w-4 h-4 text-gray-900"></i>
+            </span>
+            <a href="mailto:Tdaloraavm@gmail.com" class="hover:text-purple-600 transition-colors">Tdaloraavm@gmail.com</a>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3 mt-2 lg:mt-0">
+             <span class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center bg-gray-50 shrink-0">
+               <i data-lucide="map-pin" class="w-4 h-4 text-gray-900"></i>
+            </span>
+            <span class="text-sm">Güneşevler, 71. Cd. No:1, 06140 Altındağ/Ankara</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+      <p>&copy; 2024 T&D ALORA AVM. Tüm hakları saklıdır.</p>
+      <p>Sadece Yetkili Brokerlar İçindir</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Animate numbers if it has count-up class
+          if (entry.target.classList.contains('count-up') && !entry.target.dataset.animated) {
+            animateValue(entry.target, 0, parseInt(entry.target.dataset.target), 2000);
+            entry.target.dataset.animated = "true";
+          }
+          else {
+            const countUps = entry.target.querySelectorAll('.count-up');
+            countUps.forEach(countUp => {
+               if(!countUp.dataset.animated) {
+                 animateValue(countUp, 0, parseInt(countUp.dataset.target), 2000);
+                 countUp.dataset.animated = "true";
+               }
+            })
+          }
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Count up animation function
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        // easeOutQuart
+        const easeOut = 1 - Math.pow(1 - progress, 4);
+        obj.innerHTML = new Intl.NumberFormat('tr-TR').format(Math.floor(easeOut * end));
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+            obj.innerHTML = new Intl.NumberFormat('tr-TR').format(end);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+  </script>
+</body>
+</html>
